@@ -21,6 +21,7 @@ Tailored Select is a Web Component built to be a searchable select box. Inspired
 - Web Component
 - Simple Form Component (TODO: link to rolemodel rails)
 - Capybara test helper (TODO: link to rolemodel rails)
+- Optics addon (TODO: link to optics)
 
 ## Supported browsers
 

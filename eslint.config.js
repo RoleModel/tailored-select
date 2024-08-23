@@ -1,6 +1,7 @@
-import prettier from 'eslint-config-prettier'
+import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default [
+  eslintConfigPrettier,
   {
     files: ['**/*.js'],
     plugins: {

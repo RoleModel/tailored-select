@@ -4,9 +4,6 @@ export default [
   eslintConfigPrettier,
   {
     files: ['**/*.js'],
-    plugins: {
-      prettier: prettier,
-    },
     rules: {
       'no-unused-vars': [
         'warn',

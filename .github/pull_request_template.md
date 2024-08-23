@@ -15,9 +15,12 @@ What changed in this PR?
 
 ## Sanity Check
 
+Run `yarn sanity-check` to verify these steps.
+
 - [ ] Have you run linters?
 - [ ] Have you run prettier?
 - [ ] Have you tried building?
+
 - [ ] Do you need to update the package version?
 
 ## Screenshots

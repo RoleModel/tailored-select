@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "prettier.configPath": ".prettierrc.json",
+    "editor.formatOnSave": true,
+  },
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode"],
+  },
+}

@@ -12,15 +12,15 @@ Tailored Select is a Web Component built to be a searchable select box. Inspired
 
 ### Chosen
 
-* [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) As the foundational technology.
-* [Lit](https://lit.dev/) for easily creating Web Components.
-* [Vite](https://vitejs.dev/) for a fast development environment that handles developing, building, and publishing the project.
+- [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) As the foundational technology.
+- [Lit](https://lit.dev/) for easily creating Web Components.
+- [Vite](https://vitejs.dev/) for a fast development environment that handles developing, building, and publishing the project.
 
 ## Technology relationships
 
-* Web Component
-* Simple Form Component (TODO: link to rolemodel rails)
-* Capybara test helper (TODO: link to rolemodel rails)
+- Web Component
+- Simple Form Component (TODO: link to rolemodel rails)
+- Capybara test helper (TODO: link to rolemodel rails)
 
 ## Supported browsers
 
@@ -42,12 +42,7 @@ TODO: Add tests
 
 ## Editor plugins
 
-* TODO: Maybe add prettier?
-
-## Troubleshooting information
-
-* [App Status Page](http://app.<applicationname>.com/_ping) will give you information about what is running.
-* Alternatively, you can ssh in and check that the application server and web server are both running.
+- TODO: Maybe add prettier?
 
 ## Testing Strategy
 

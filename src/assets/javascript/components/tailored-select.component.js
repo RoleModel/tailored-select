@@ -27,9 +27,6 @@ export default class TailoredSelect extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
-
-    // Ensure focusable
-    // this.tabIndex = 0
   }
 
   firstUpdated(changedProperties) {
@@ -38,11 +35,11 @@ export default class TailoredSelect extends LitElement {
     // On load, everything starts in available. We need to move selected over.
     this.availableOptions.forEach((option) => {
       option.addEventListener('click', () => this.toggleOption(option))
-      option.addEventListener('mouseover', () => this.handleOptionFocus(option))
+      option.addEventListener('mouseover', () => this.handleOptionActive(option))
       this.assignOptionSlot(option)
     })
 
-    this.resetOptionFocus()
+    this.resetActiveOption()
     this.updateFormValue()
   }
 
@@ -50,7 +47,7 @@ export default class TailoredSelect extends LitElement {
 
   handleInputBlur() {
     this.hasFocus = false
-    this.resetOptionFocus()
+    this.resetActiveOption()
     // this.emit('ts-blur')
   }
 
@@ -66,20 +63,20 @@ export default class TailoredSelect extends LitElement {
   handleInputKeyDown(event) {
     switch (event.key) {
       case 'ArrowDown':
-        this.focusNextOption()
+        this.activateNextOption()
         break
       case 'ArrowUp':
-        this.focusPreviousOption()
+        this.activatePreviousOption()
         break
       case 'Enter':
         if (this.availableOptions.length > 0) {
-          this.toggleOption(this.focusedOption)
+          this.toggleOption(this.activeOption)
         }
         break
       case 'Backspace':
         this.deleteSelection()
-        if (!this.focusedOption) {
-          this.resetOptionFocus()
+        if (!this.activeOption) {
+          this.resetActiveOption()
         }
         break
     }
@@ -126,7 +123,7 @@ export default class TailoredSelect extends LitElement {
 
   //  Option Behavior
 
-  handleOptionFocus(option) {
+  handleOptionActive(option) {
     if (option.selected) {
       return
     }
@@ -155,7 +152,7 @@ export default class TailoredSelect extends LitElement {
     return this.shadowRoot.querySelector('div[role="listbox"]')
   }
 
-  focusNextOption(option = this.focusedOption) {
+  activateNextOption(option = this.activeOption) {
     const index = this.availableOptions.indexOf(option)
     if (index == this.availableOptions.length - 1) return false
 
@@ -164,8 +161,8 @@ export default class TailoredSelect extends LitElement {
     return true
   }
 
-  focusPreviousOption() {
-    const index = this.availableOptions.indexOf(this.focusedOption)
+  activatePreviousOption() {
+    const index = this.availableOptions.indexOf(this.activeOption)
     if (index == 0) return false
 
     const nextOption = this.availableOptions[index - 1]
@@ -173,21 +170,21 @@ export default class TailoredSelect extends LitElement {
     return true
   }
 
-  ensureOptionFocused(option) {
-    if (this.focusNextOption(option)) return
-    if (this.focusPreviousOption(option)) return
+  ensureActiveOption(option) {
+    if (this.activateNextOption(option)) return
+    if (this.activatePreviousOption(option)) return
 
-    this.clearOptionFocus()
+    this.clearActiveOption()
   }
 
   setActiveOption(option) {
-    this.clearOptionFocus()
+    this.clearActiveOption()
     this.setHeight(option)
-    option.classList.add('focused')
+    option.classList.add('active')
   }
 
-  resetOptionFocus() {
-    this.clearOptionFocus()
+  resetActiveOption() {
+    this.clearActiveOption()
 
     const firstOption = this.availableOptions[0]
     if (firstOption) {
@@ -195,11 +192,12 @@ export default class TailoredSelect extends LitElement {
     }
   }
 
-  clearOptionFocus() {
-    this.removeFocus(this.focusedOption)
+  clearActiveOption() {
+    this.removeActiveOption(this.activeOption)
   }
-  removeFocus(option) {
-    option?.classList.remove('focused')
+
+  removeActiveOption(option) {
+    option?.classList.remove('active')
   }
 
   setHeight(option) {
@@ -215,8 +213,8 @@ export default class TailoredSelect extends LitElement {
     }
   }
 
-  get focusedOption() {
-    return this.availableOptions.find((opt) => opt.classList.contains('focused'))
+  get activeOption() {
+    return this.availableOptions.find((opt) => opt.classList.contains('active'))
   }
 
   // handleChange(event) {
@@ -252,7 +250,7 @@ export default class TailoredSelect extends LitElement {
   toggleOption(option) {
     if (!option.selected) {
       // Only performed when toggling on
-      this.ensureOptionFocused(option)
+      this.ensureActiveOption(option)
     }
 
     option.selected = !option.selected
@@ -491,7 +489,7 @@ export default class TailoredSelect extends LitElement {
       cursor: pointer;
     }
 
-    ::slotted(option.focused) {
+    ::slotted(option.active) {
       background-color: var(--option-background-color-hover);
       color: var(--option-text-color-hover);
     }

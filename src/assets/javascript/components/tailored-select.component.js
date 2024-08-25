@@ -87,6 +87,7 @@ export default class TailoredSelect extends LitElement {
     if (!value) {
       // Make all options visible
       this.availableOptions.forEach((opt) => (opt.hidden = false))
+      this.resetActiveOption()
       return
     }
 
@@ -94,6 +95,8 @@ export default class TailoredSelect extends LitElement {
     this.availableOptions.forEach((opt) => {
       opt.hidden = !Boolean(opt.value.match(matcher))
     })
+
+    this.resetActiveOption()
   }
 
   deleteSelection() {
@@ -186,9 +189,9 @@ export default class TailoredSelect extends LitElement {
   resetActiveOption() {
     this.clearActiveOption()
 
-    const firstOption = this.availableOptions[0]
-    if (firstOption) {
-      this.setActiveOption(firstOption)
+    const firstSelectableOption = this.availableOptions.filter((option) => !option.hidden)[0]
+    if (firstSelectableOption) {
+      this.setActiveOption(firstSelectableOption)
     }
   }
 

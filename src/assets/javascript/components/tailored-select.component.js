@@ -152,18 +152,27 @@ export default class TailoredSelect extends LitElement {
 
   focusNextOption(option = this.focusedOption) {
     const index = this.availableOptions.indexOf(option)
-    if (index == this.availableOptions.length - 1) return
+    if (index == this.availableOptions.length - 1) return false
 
     const nextOption = this.availableOptions[index + 1]
     this.setActiveOption(nextOption)
+    return true
   }
 
   focusPreviousOption() {
     const index = this.availableOptions.indexOf(this.focusedOption)
-    if (index == 0) return
+    if (index == 0) return false
 
     const nextOption = this.availableOptions[index - 1]
     this.setActiveOption(nextOption)
+    return true
+  }
+
+  ensureOptionFocused(option) {
+    if (this.focusNextOption(option)) return
+    if (this.focusPreviousOption(option)) return
+
+    this.clearOptionFocus()
   }
 
   setActiveOption(option) {
@@ -236,7 +245,10 @@ export default class TailoredSelect extends LitElement {
   }
 
   toggleOption(option) {
-    if (!option.selected) this.focusNextOption(option)
+    if (!option.selected) {
+      // Only performed when toggling on
+      this.ensureOptionFocused(option)
+    }
 
     option.selected = !option.selected
     this.assignOptionSlot(option)

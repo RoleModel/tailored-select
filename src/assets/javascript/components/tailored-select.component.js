@@ -72,10 +72,15 @@ export default class TailoredSelect extends LitElement {
         this.focusPreviousOption()
         break
       case 'Enter':
-        this.toggleOption(this.focusedOption)
+        if (this.availableOptions.length > 0) {
+          this.toggleOption(this.focusedOption)
+        }
         break
       case 'Backspace':
         this.deleteSelection()
+        if (!this.focusedOption) {
+          this.resetOptionFocus()
+        }
         break
     }
   }

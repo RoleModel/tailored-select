@@ -1,7 +1,7 @@
 {
   "name": "@rolemodel/tailored-select",
   "description": "Tailored Select is a Web Component built to be a searchable select box. Inspired by tom-select.js to provide a framework agnostic autocomplete widget with native-feeling keyboard navigation. Useful for tagging, contact lists, etc.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "RoleModel Software",
   "license": "MIT",
   "type": "module",

@@ -97,6 +97,7 @@ export default class TailoredSelect extends LitElement {
     })
 
     this.resetActiveOption()
+    this.updateNoResultsMessage()
   }
 
   deleteSelection() {
@@ -278,7 +279,7 @@ export default class TailoredSelect extends LitElement {
   }
 
   updateNoResultsMessage() {
-    const noResults = this.availableOptions.every((opt) => opt.hidden)
+    const noResults = this.availableOptions.every((option) => option.hidden)
     this.noResultsMessage.classList.toggle('active', noResults)
   }
 
